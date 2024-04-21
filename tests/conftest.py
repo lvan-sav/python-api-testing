@@ -12,6 +12,8 @@ def api_key() -> str:
 @pytest.fixture
 def rand_user() -> dict[str]:
     login = gen_rand_str(2, 19)
+    if any(c.isalpha() for c in login):
+        login = login[:-1] + "a"
     email = gen_rand_email()
     password = gen_rand_str(5, 120)
     return {
